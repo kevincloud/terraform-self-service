@@ -57,14 +57,42 @@ resource "tfe_variable" "key_pair" {
 
 resource "tfe_variable" "instance_type" {
     key = "instance_type"
-    value = "t3.micro"
+    value = var.instance_type
     category = "terraform"
     workspace_id = tfe_workspace.workspace.id
 }
 
-resource "tfe_variable" "aws_access_key" {
-    key = "aws_access_key"
-    value = var.aws_access_key
+resource "tfe_variable" "prefix" {
+    key = "prefix"
+    value = "${var.prefix}${wkspid.result}"
+    category = "terraform"
+    workspace_id = tfe_workspace.workspace.id
+}
+
+resource "tfe_variable" "owner" {
+    key = "owner"
+    value = var.owner
+    category = "terraform"
+    workspace_id = tfe_workspace.workspace.id
+}
+
+resource "tfe_variable" "hc_region" {
+    key = "hc_region"
+    value = var.hc_region
+    category = "terraform"
+    workspace_id = tfe_workspace.workspace.id
+}
+
+resource "tfe_variable" "purpose" {
+    key = "purpose"
+    value = var.purpose
+    category = "terraform"
+    workspace_id = tfe_workspace.workspace.id
+}
+
+resource "tfe_variable" "ttl" {
+    key = "ttl"
+    value = var.ttl
     category = "terraform"
     workspace_id = tfe_workspace.workspace.id
 }

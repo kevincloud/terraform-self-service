@@ -11,7 +11,7 @@ resource "random_integer" "wkspid" {
 resource "tfe_workspace" "workspace" {
     name = "HC${random_integer.wkspid.result}"
     organization = var.organization
-    auto_apply = true
+    auto_apply = false
     vcs_repo {
         identifier = "kevincloud/terraform-simple-instance"
         oauth_token_id = var.vcs_token

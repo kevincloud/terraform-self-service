@@ -9,7 +9,7 @@ resource "random_integer" "wkspid" {
 }
 
 resource "tfe_workspace" "workspace" {
-    name = "HC${wkspid.result}"
+    name = "HC${random_integer.wkspid.result}"
     organization = var.organization
     auto_apply = true
     vcs_repo {
@@ -64,7 +64,7 @@ resource "tfe_variable" "instance_type" {
 
 resource "tfe_variable" "prefix" {
     key = "prefix"
-    value = "${var.prefix}${wkspid.result}"
+    value = "${var.prefix}${random_integer.wkspid.result}"
     category = "terraform"
     workspace_id = tfe_workspace.workspace.id
 }
